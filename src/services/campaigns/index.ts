@@ -7,6 +7,8 @@
 export { campaignService } from './campaignService';
 export { templateService } from './templateService';
 export { messageService } from './messageService';
+export { smsService } from './smsService';
+export { emailService } from './emailService';
 
 // React Query Hooks
 export {
