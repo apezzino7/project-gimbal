@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+/* Project Gimbal Design System */
+@theme {
+  /* Color Palette */
+  --color-primary-blue: #0353a4;
+  --color-secondary-blue: #006daa;
+  --color-dark-blue: #003559;
+  --color-light-blue: #b9d6f2;
+  --color-dark-bg: #061a40;
+
+  --color-text-dark: #000000;
+  --color-text-light: #ffffff;
+  --color-border: #e0e0e0;
+  --color-bg-light: #f5f5f5;
+
+  --color-error: #d32f2f;
+  --color-success: #2e7d32;
+
+  /* Font Families */
+  --font-family-sans: Inter, system-ui, -apple-system, sans-serif;
+  --font-family-mono: Consolas, Monaco, 'Courier New', monospace;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Global Styles */
+body {
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  color: #000000;
+}
+
+/* Toast Animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}

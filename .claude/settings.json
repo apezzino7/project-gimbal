@@ -1,0 +1,75 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npx vitest *)",
+      "Bash(npx cypress *)",
+      "Bash(npx eslint *)",
+      "Bash(npx tsc *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git branch *)",
+      "Bash(git checkout *)",
+      "Bash(git switch *)",
+      "Bash(git stash *)",
+      "Bash(supabase *)",
+      "Bash(gh pr *)",
+      "Bash(gh issue *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(mkdir *)",
+      "Read(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "Write(src/**/*)",
+      "Write(supabase/**/*)",
+      "Edit(src/**/*)",
+      "Edit(supabase/**/*)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(git push --force *)",
+      "Bash(git reset --hard *)",
+      "Bash(sudo *)",
+      "Write(.env*)",
+      "Write(.git/*)",
+      "Edit(.env*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$TOOL_INPUT_PATH\" | grep -qE '\\.env'; then echo 'BLOCKED: Cannot write to .env files' && exit 1; fi"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$TOOL_INPUT_FILE_PATH\" | grep -qE '\\.(ts|tsx)$'; then npx eslint --fix \"$TOOL_INPUT_FILE_PATH\" 2>/dev/null || true; fi"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$TOOL_INPUT_FILE_PATH\" | grep -qE '\\.(ts|tsx)$'; then npx eslint --fix \"$TOOL_INPUT_FILE_PATH\" 2>/dev/null || true; fi"
+          }
+        ]
+      }
+    ]
+  }
+}

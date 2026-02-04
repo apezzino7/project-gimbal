@@ -1,0 +1,9 @@
+{
+  "$schema": "https://platform.claude.com/docs/schemas/claude-code/mcp.json",
+  "mcpServers": {
+    "supabase": {
+      "type": "http",
+      "url": "http://127.0.0.1:54321/mcp"
+    }
+  }
+}
