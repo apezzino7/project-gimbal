@@ -157,4 +157,29 @@ export const auditKeys = {
   all: ['audit'] as const,
   logs: (filters?: { eventType?: string; email?: string; dateRange?: { start: string; end: string } }) =>
     [...auditKeys.all, 'logs', filters] as const,
+  stats: (days?: number) => [...auditKeys.all, 'stats', days] as const,
+  eventTypes: () => [...auditKeys.all, 'eventTypes'] as const,
+};
+
+// =============================================================================
+// Profile / Admin Keys
+// =============================================================================
+
+export const profileKeys = {
+  all: ['profiles'] as const,
+  lists: () => [...profileKeys.all, 'list'] as const,
+  list: (filters?: { role?: string; isActive?: boolean; search?: string }) =>
+    [...profileKeys.lists(), filters] as const,
+  details: () => [...profileKeys.all, 'detail'] as const,
+  detail: (id: string) => [...profileKeys.details(), id] as const,
+  current: () => [...profileKeys.all, 'current'] as const,
+  currentRole: () => [...profileKeys.all, 'currentRole'] as const,
+  stats: () => [...profileKeys.all, 'stats'] as const,
+};
+
+export const appSettingsKeys = {
+  all: ['appSettings'] as const,
+  current: () => [...appSettingsKeys.all, 'current'] as const,
+  masked: () => [...appSettingsKeys.all, 'masked'] as const,
+  messagingStatus: () => [...appSettingsKeys.all, 'messagingStatus'] as const,
 };

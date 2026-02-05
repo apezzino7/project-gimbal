@@ -6,6 +6,7 @@ import { CampaignsPage } from './pages/CampaignsPage';
 import { CampaignDetailPage } from './pages/CampaignDetailPage';
 import { CreateCampaignPage } from './pages/CreateCampaignPage';
 import { EditCampaignPage } from './pages/EditCampaignPage';
+import { AdminUsersPage, AdminSettingsPage } from './pages/admin';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { ToastProvider } from './contexts/ToastContext';
@@ -78,6 +79,28 @@ function App() {
                       <EditCampaignPage />
                     </ProtectedRoute>
                   }
+                />
+
+                {/* Admin routes - require admin role */}
+                <Route
+                  path="/admin/users"
+                  element={
+                    <ProtectedRoute requiredRole="admin">
+                      <AdminUsersPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/settings"
+                  element={
+                    <ProtectedRoute requiredRole="admin">
+                      <AdminSettingsPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin"
+                  element={<Navigate to="/admin/users" replace />}
                 />
 
                 {/* Default redirect */}

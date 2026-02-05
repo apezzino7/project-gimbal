@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import type { ReactNode } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import type { UserRole } from '@/types/admin';
 
 // =============================================================================
 // Types
@@ -21,6 +22,8 @@ export interface NavItem {
   badge?: number;
   /** Whether item is disabled */
   disabled?: boolean;
+  /** Minimum role required to see this nav item */
+  requiredRole?: UserRole;
 }
 
 export interface SidebarProps {
